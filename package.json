@@ -1,0 +1,21 @@
+{
+  "name": "node_web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --inspect app.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.5.0",
+    "bluebird": "^3.5.0",
+    "cluster": "^0.7.7",
+    "express": "^4.15.4",
+    "jquery": "^3.2.1",
+    "md5": "^2.2.1",
+    "mysql": "^2.14.1",
+    "myutiltool": "^1.0.4",
+    "promise-mysql": "^3.0.2",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./../node_modules/jquery/dist/jquery.js"></script>
+    <script src="./../node_modules/underscore/underscore.js"></script>
+
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .login{
+        width: 300px;
+        margin: 0 auto;
+        padding: 15px;
+        border:1px solid #ccc;
+        text-align: center;
+    }
+    .login span{
+        display: inline-block;
+        min-width:70px;
+        text-align: right;
+    }
+    input{
+        border:1px solid #ccc;
+    }
+</style>
+<div class="login">
+    <h2>用户登录</h2>
+    <span>user</span> <input type="text" class="J_user"><br>
+    <span>password</span> <input type="password" class="J_pass"><br>
+    <input type="button" value="登录" class="J_login_btn"> <a href="register.html">注册新用户</a>
+
+</div>
+
+<div class="J_empList"></div>
+
+<script type="text/template" id="J_empTem">
+    <ul>
+        <%_.each(list,function(cur){%>
+        <li>
+            <span><%=cur.id%></span>
+            <span><%=cur.name%></span>
+            <span><%=cur.email%></span>
+        </li>
+        <%})%>
+    </ul>
+</script>
+
+
+</body>
+</html>

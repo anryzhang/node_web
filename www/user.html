@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./../node_modules/jquery/dist/jquery.js"></script>
+    <script src="./../node_modules/underscore/underscore.js"></script>
+</head>
+<body>
+user <input type="text" id="user"><br>
+pwd <input type="password" id="pass"><br>
+<input type="button" value="注册" id="reg_btn">
+<input type="button" value="登录" id="login_btn">
+
+<div class="J_empList"></div>
+
+<script type="text/template" id="J_empTem">
+    <ul>
+    <%_.each(list,function(cur){%>
+        <li>
+            <span><%=cur.id%></span>
+            <span><%=cur.name%></span>
+            <span><%=cur.email%></span>
+        </li>
+    <%})%>
+    </ul>
+</script>
+<script>
+    $(function () {
+
+        $(document).on('click','#reg_btn',function (e) {
+            $.ajax({
+                url:'/user',
+                method:'get',
+                data:{
+                    act:'reg',
+                    user: $('#user').val(),
+                    pass: $('#pass').val(),
+                    t:$.now()
+                },
+                dataType:'json',
+                success:function (res) {
+                    console.log(res);
+                },
+                error:function () {
+
+                }
+            });
+        })
+
+        $(document).on('click','#login_btn',function (e) {
+            $.ajax({
+                url:'/user',
+                method:'post',
+                data:{
+                    act:'login',
+                    user: $('#user').val(),
+                    pass: $('#pass').val(),
+                    t:$.now()
+                },
+                dataType:'json',
+                success:function (res) {
+                    console.log(res);
+                    if(res.result.length){
+                        var _t = _.template($('#J_empTem').text());
+
+                        $(document).find('.J_empList').empty().append(_t({list:res.result}));
+                    }
+                },
+                error:function () {
+
+                }
+            });
+        })
+    });
+</script>
+</body>
+</html>

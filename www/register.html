@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./../node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .login{
+        width: 300px;
+        margin: 0 auto;
+        padding: 15px;
+        border:1px solid #ccc;
+        text-align: center;
+    }
+    .login span{
+        display: inline-block;
+        min-width:70px;
+        text-align: right;
+    }
+    input{
+        border:1px solid #ccc;
+    }
+</style>
+<div class="login">
+    <h2>用户注册</h2>
+    <span>user</span> <input type="text" class="J_user"><br>
+    <span>password</span> <input type="password" class="J_pass"><br>
+    <input type="button" value="注册" class="J_login_btn"> <a href="index.html">登录</a>
+
+</div>
+<script>
+
+    $(function () {
+
+        var J_doc = $(document);
+
+        J_doc.on('click','.J_login_btn',function (e) {
+            e.preventDefault();
+            var _data = {
+                user: J_doc.find('.J_user').val(),
+                password: J_doc.find('.J_pass').val()
+            };
+
+            $.ajax({
+                url:'/user/register',
+                method:'post',
+                data:_data,
+                dataType:'json',
+                success:function (res) {
+                    console.log(res);
+                    if(res.code === 100){
+
+                    }else{
+                        alert(res.message);
+                    }
+                }
+            })
+
+        })
+    })
+</script>
+</body>
+</html>
